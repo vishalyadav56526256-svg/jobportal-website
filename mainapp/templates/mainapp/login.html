@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Type</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#0f172a,#1e293b);
+        }
+
+        .container{
+            width:400px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .icon{
+            font-size:50px;
+            margin-bottom:15px;
+        }
+
+        h2{
+            color:#0f172a;
+            margin-bottom:30px;
+            font-size:28px;
+        }
+
+        .btn{
+            display:block;
+            width:100%;
+            text-decoration:none;
+            padding:15px;
+            margin:15px 0;
+            border-radius:8px;
+            color:white;
+            font-size:18px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .jobseeker{
+            background:#2563eb;
+        }
+
+        .jobseeker:hover{
+            background:#1d4ed8;
+            transform:translateY(-3px);
+        }
+
+        .employer{
+            background:#16a34a;
+        }
+
+        .employer:hover{
+            background:#15803d;
+            transform:translateY(-3px);
+        }
+
+        .admin{
+            background:#dc2626;
+        }
+
+        .admin:hover{
+            background:#b91c1c;
+            transform:translateY(-3px);
+        }
+
+        @media(max-width:450px){
+            .container{
+                width:90%;
+                padding:30px 20px;
+            }
+
+            h2{
+                font-size:24px;
+            }
+
+            .btn{
+                font-size:16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="icon">🔐</div>
+
+        <h2>Select Login Type</h2>
+
+        <a href="{% url 'jobseekerlogin' %}" class="btn jobseeker">
+            Job Seeker Login
+        </a>
+
+        <a href="#" class="btn employer">
+            Employer Login
+        </a>
+
+        <a href="#" class="btn admin">
+            Admin Login
+        </a>
+
+    </div>
+
+</body>
+</html>

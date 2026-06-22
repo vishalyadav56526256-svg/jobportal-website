@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - HireHub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f8fafc;
+}
+
+/* Navbar */
+
+nav{
+    background:#0f172a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+}
+
+.nav-links li{
+    margin-left:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#38bdf8;
+}
+
+/* Contact Section */
+
+.contact-section{
+    padding:70px 8%;
+}
+
+.contact-section h1{
+    text-align:center;
+    color:#0f172a;
+    margin-bottom:40px;
+    font-size:42px;
+}
+
+.contact-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.contact-info{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.contact-info h2{
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+.contact-info p{
+    margin-bottom:15px;
+    line-height:1.7;
+}
+
+.contact-form{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.contact-form h2{
+    margin-bottom:20px;
+    color:#16a34a;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    outline:none;
+}
+
+.form-group textarea{
+    resize:none;
+    height:120px;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+/* Footer */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+}
+
+.nav-links{
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.nav-links li{
+    margin:8px;
+}
+
+.contact-container{
+    grid-template-columns:1fr;
+}
+
+.contact-section h1{
+    font-size:32px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav>
+<div class="logo">HireHub</div>
+
+<ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'contact' %}">Contact</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'registration' %}">Register</a></li>
+</ul>
+</nav>
+
+<!-- Contact -->
+
+<section class="contact-section">
+
+<h1>Contact Us</h1>
+
+<div class="contact-container">
+
+    <!-- Contact Info -->
+
+    <div class="contact-info">
+
+        <h2>Get In Touch</h2>
+
+        <p>
+            We are here to help job seekers and employers.
+            Feel free to contact us for any queries.
+        </p>
+
+        <p><strong>📍 Address:</strong> Lucknow, Uttar Pradesh, India</p>
+
+        <p><strong>📧 Email:</strong> support@hirehub.com</p>
+
+        <p><strong>📞 Phone:</strong> +91 9876543210</p>
+
+    </div>
+
+    <!-- Contact Form -->
+
+    <div class="contact-form">
+
+        <h2>Send Message</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Enter Name" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Enter Email" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="mobile" placeholder="Enter Mobile Number" required>
+            </div>
+
+            <div class="form-group">
+                <textarea name="message" placeholder="Enter Message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+                Submit Enquiry
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+    <p>© 2026 HireHub. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

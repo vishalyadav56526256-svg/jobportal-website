@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Seeker Registration - HireHub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-container{
+    width:400px;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.login-container h2{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+    color:#333;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.form-group input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.extra-links{
+    text-align:center;
+    margin-top:15px;
+}
+
+.extra-links a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:500;
+}
+
+.extra-links a:hover{
+    text-decoration:underline;
+}
+
+.message{
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+@media(max-width:450px){
+
+.login-container{
+    width:90%;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+
+    <h2>Job Seeker Registration</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+             <label>Mobile Number</label>
+            <input type="text" name="mobile" required>
+         </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn">
+            Register
+        </button>
+    </form>
+
+    <div class="extra-links">
+        <p>
+            Already have an account?
+            <a href="{% url 'jobseekerlogin' %}">
+                Login Here
+            </a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

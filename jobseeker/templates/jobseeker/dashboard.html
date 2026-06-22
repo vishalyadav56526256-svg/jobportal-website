@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Seeker Dashboard - HireHub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#1e3a8a;
+    color:white;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:500;
+}
+
+.nav-links a:hover{
+    color:#93c5fd;
+}
+
+/* Welcome */
+
+.welcome{
+    background:white;
+    margin:30px 8%;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.welcome h2{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+/* Cards */
+
+.dashboard{
+    padding:0 8% 40px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+/* Footer */
+
+footer{
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+}
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    gap:10px;
+}
+
+.nav-links a{
+    margin:0 10px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<div class="navbar">
+    <div class="logo">HireHub</div>
+
+    <div class="nav-links">
+        <a href="#">Dashboard</a>
+        <a href="#">Profile</a>
+        <a href="#">Jobs</a>
+        <a href="{% url 'jobseekerlogout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- Welcome Section -->
+
+<div class="welcome">
+    <h2>Welcome, {{ js.name }}</h2>
+    <p>
+        Manage your profile, search jobs and track applications from your dashboard.
+    </p>
+</div>
+
+<!-- Dashboard Cards -->
+
+<section class="dashboard">
+
+<div class="cards">
+
+    <div class="card">
+        <h3>My Profile</h3>
+        <p>View and update your personal profile details.</p>
+        <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>Resume</h3>
+        <p>Upload and manage your resume.</p>
+        <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>Search Jobs</h3>
+        <p>Find jobs that match your skills and interests.</p>
+        <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+        <h3>Applied Jobs</h3>
+        <p>Track all jobs you have applied for.</p>
+        <a href="#" class="btn">Open</a>
+    </div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+    © 2026 HireHub | Job Seeker Dashboard
+</footer>
+
+</body>
+</html>

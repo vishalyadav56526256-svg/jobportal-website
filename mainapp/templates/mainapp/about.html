@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - HireHub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f8fafc;
+}
+
+/* Navbar */
+
+nav{
+    background:#0f172a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+}
+
+.nav-links li{
+    margin-left:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#38bdf8;
+}
+
+/* Hero */
+
+.about-hero{
+    background:linear-gradient(rgba(15,23,42,.85),
+    rgba(15,23,42,.85));
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.about-hero h1{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.about-hero p{
+    font-size:20px;
+    max-width:800px;
+    margin:auto;
+}
+
+/* About Section */
+
+.about-section{
+    padding:70px 8%;
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.card p{
+    line-height:1.8;
+    color:#444;
+}
+
+/* Stats */
+
+.stats{
+    padding:50px 8%;
+    background:#e2e8f0;
+}
+
+.stats h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0f172a;
+}
+
+.stat-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.stat h3{
+    font-size:35px;
+    color:#16a34a;
+    margin-bottom:10px;
+}
+
+/* Team Section */
+
+.team{
+    padding:70px 8%;
+    text-align:center;
+}
+
+.team h2{
+    margin-bottom:40px;
+    color:#0f172a;
+}
+
+.team-card{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.team-card p{
+    line-height:1.8;
+}
+
+/* Footer */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+}
+
+.nav-links{
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.nav-links li{
+    margin:8px;
+}
+
+.about-container{
+    grid-template-columns:1fr;
+}
+
+.about-hero h1{
+    font-size:35px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav>
+<div class="logo">HireHub</div>
+
+<ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'contact' %}">Contact</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'registration' %}">Register</a></li>
+</ul>
+</nav>
+
+<!-- Hero Section -->
+
+<section class="about-hero">
+    <h1>About HireHub</h1>
+    <p>
+        Connecting talented job seekers with trusted employers
+        through a modern and intelligent recruitment platform.
+    </p>
+</section>
+
+<!-- About -->
+
+<section class="about-section">
+
+<div class="about-container">
+
+<div class="card">
+    <h2>Our Mission</h2>
+    <p>
+        HireHub aims to simplify the hiring process by creating
+        a bridge between employers and job seekers. We help
+        candidates discover career opportunities and assist
+        recruiters in finding the right talent quickly.
+    </p>
+</div>
+
+<div class="card">
+    <h2>Our Vision</h2>
+    <p>
+        Our vision is to become a leading job portal platform
+        where every candidate finds the right opportunity and
+        every employer finds the perfect employee.
+    </p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Stats -->
+
+<section class="stats">
+
+<h2>Why Choose HireHub?</h2>
+
+<div class="stat-box">
+
+<div class="stat">
+    <h3>1000+</h3>
+    <p>Active Jobs</p>
+</div>
+
+<div class="stat">
+    <h3>500+</h3>
+    <p>Companies</p>
+</div>
+
+<div class="stat">
+    <h3>5000+</h3>
+    <p>Job Seekers</p>
+</div>
+
+<div class="stat">
+    <h3>95%</h3>
+    <p>Success Rate</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Team -->
+
+<section class="team">
+
+<h2>Who We Are</h2>
+
+<div class="team-card">
+
+<p>
+HireHub is a modern online recruitment platform developed to
+make hiring easier, faster, and more efficient. Whether you are
+a fresh graduate searching for your first job or a company
+looking for skilled professionals, HireHub provides the tools
+needed to connect talent with opportunity.
+</p>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+    <p>© 2026 HireHub. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
