@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Education | HireHub</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+h2{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:25px;
+}
+
+.add-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:8px;
+}
+
+.add-btn:hover{
+    background:#1d4ed8;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f4f8ff;
+}
+
+.edit{
+    background:#f59e0b;
+    color:white;
+    padding:8px 14px;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.delete{
+    background:#dc2626;
+    color:white;
+    padding:8px 14px;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.edit:hover{
+    background:#d97706;
+}
+
+.delete:hover{
+    background:#b91c1c;
+}
+
+@media(max-width:768px){
+
+table{
+    font-size:14px;
+}
+
+th,td{
+    padding:10px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>My Education</h2>
+
+{% if not education %}
+<a href="{% url 'addeducation' %}" class="add-btn">
+    + Add Education
+</a>
+{% endif %}
+
+<table>
+
+<tr>
+    <th>Course</th>
+    <th>College</th>
+    <th>Passing Year</th>
+    <th>Percentage</th>
+    <th>Edit/Delete</th>
+    
+
+</tr>
+
+{% for edu in education %}
+
+<tr>
+
+<td>{{ edu.course }}</td>
+<td>{{ edu.college }}</td>
+<td>{{ edu.passing_year }}</td>
+<td>{{ edu.percentage }}%</td>
+
+<td>
+
+<a href="{% url 'editeducation' edu.id %}" class="edit">
+Edit
+</a>
+
+<a href="{% url 'deleteeducation' edu.id %}" class="delete"
+onclick="return confirm('Delete this education?')">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="6">
+No education added yet.
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

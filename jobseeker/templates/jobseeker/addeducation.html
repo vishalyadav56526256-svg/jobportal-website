@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Education | HireHub</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:450px;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.container h2{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:600;
+    color:#333;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 6px rgba(37,99,235,.3);
+}
+
+.btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:#fff;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.back{
+    margin-top:18px;
+    text-align:center;
+}
+
+.back a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.back a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:500px){
+
+.container{
+    width:90%;
+    padding:25px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Add Education</h2>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Qualification</label>
+
+            <input
+                type="text"
+                name="course"
+                placeholder="B.Tech, BCA, MCA..."
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>College Name</label>
+
+            <input
+                type="text"
+                name="college"
+                placeholder="Enter College Name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Passing Year</label>
+
+            <input
+                type="number"
+                name="passing_year"
+                placeholder="2025"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Percentage / CGPA</label>
+
+            <input
+                type="text"
+                name="percentage"
+                placeholder="75% or 8.5 CGPA"
+                required
+            >
+        </div>
+
+        <button class="btn">
+            Save Education
+        </button>
+
+    </form>
+
+    <div class="back">
+        <a href="{% url 'myprofile' %}">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

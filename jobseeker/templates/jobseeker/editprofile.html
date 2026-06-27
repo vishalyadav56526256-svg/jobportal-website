@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Profile</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+
+background:#eef4ff;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+
+}
+
+.container{
+
+width:420px;
+background:#fff;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+h2{
+
+text-align:center;
+color:#2563eb;
+margin-bottom:25px;
+
+}
+
+.form-group{
+
+margin-bottom:18px;
+
+}
+
+label{
+
+display:block;
+font-weight:600;
+margin-bottom:8px;
+
+}
+
+input{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+
+}
+
+input:focus{
+
+outline:none;
+border-color:#2563eb;
+
+}
+
+button{
+
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+.message{
+
+background:#dcfce7;
+color:#166534;
+padding:10px;
+border-radius:6px;
+margin-bottom:15px;
+text-align:center;
+
+}
+
+.back{
+
+margin-top:15px;
+text-align:center;
+
+}
+
+.back a{
+
+text-decoration:none;
+color:#2563eb;
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Edit Profile</h2>
+
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="post">
+
+{% csrf_token %}
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ js.name }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+value="{{ js.email }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Mobile</label>
+
+<input
+type="text"
+name="mobile"
+value="{{ js.mobile }}"
+required>
+
+</div>
+
+<button type="submit">
+
+Update Profile
+
+</button>
+
+</form>
+
+<div class="back">
+
+<a href="{% url 'myprofile' %}">
+← Back to Profile
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
