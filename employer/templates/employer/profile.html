@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Profile | HireHub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#eef4ff,#dbeafe,#eff6ff);
+    min-height:100vh;
+}
+
+/* HEADER */
+
+.header{
+    width:100%;
+    background:linear-gradient(90deg,#1e3a8a,#2563eb);
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.header h2{
+    color:white;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.header a{
+    color:white;
+    text-decoration:none;
+    background:#ef4444;
+    padding:11px 22px;
+    border-radius:30px;
+    font-weight:600;
+    transition:.35s;
+}
+
+.header a:hover{
+    transform:translateY(-2px);
+    background:#dc2626;
+    box-shadow:0 10px 20px rgba(239,68,68,.35);
+}
+
+/* CONTAINER */
+
+.container{
+    width:90%;
+    max-width:950px;
+    margin:60px auto;
+}
+
+/* CARD */
+
+.profile-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+    animation:fade .5s ease;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* TOP */
+
+.top{
+    background:linear-gradient(135deg,#2563eb,#1e40af,#1e3a8a);
+    padding:45px 20px;
+    text-align:center;
+    color:white;
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    margin:auto;
+    color:#2563eb;
+    box-shadow:0 10px 30px rgba(255,255,255,.3);
+    margin-bottom:20px;
+}
+
+.top h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.top p{
+    font-size:17px;
+    opacity:.95;
+}
+
+/* INFO */
+
+.info{
+    padding:40px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table tr{
+    transition:.3s;
+}
+
+table tr:hover{
+    background:#f8fbff;
+}
+
+table td{
+    padding:18px;
+    border-bottom:1px solid #edf2f7;
+}
+
+table td:first-child{
+    width:35%;
+    color:#2563eb;
+    font-weight:700;
+}
+
+table td:last-child{
+    color:#374151;
+}
+
+/* BUTTONS */
+
+.buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:13px 28px;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:600;
+    transition:.35s;
+}
+
+.edit{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.edit:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+}
+
+.back{
+    background:linear-gradient(135deg,#6b7280,#4b5563);
+}
+
+.back:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 25px rgba(75,85,99,.35);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.header{
+    padding:20px;
+    flex-direction:column;
+    gap:18px;
+}
+
+.header h2{
+    font-size:26px;
+}
+
+.info{
+    padding:25px;
+}
+
+table,
+tbody,
+tr,
+td{
+    display:block;
+    width:100%;
+}
+
+table tr{
+    margin-bottom:18px;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+table td{
+    text-align:left;
+}
+
+table td:first-child{
+    background:#eff6ff;
+}
+
+.logo{
+    width:100px;
+    height:100px;
+    font-size:45px;
+}
+
+.top h2{
+    font-size:24px;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+<h2>HireHub Employer</h2>
+
+<a href="{% url 'employer_logout' %}">
+Logout
+</a>
+
+</div>
+
+
+<div class="container">
+
+<div class="profile-card">
+
+<div class="top">
+
+<div class="logo">
+🏢
+</div>
+
+<h2>{{ employer.company_name }}</h2>
+
+<p>{{ employer.company_type }}</p>
+
+</div>
+
+
+<div class="info">
+
+<table>
+
+<tr>
+<td>Company Name</td>
+<td>{{ employer.company_name }}</td>
+</tr>
+
+<tr>
+<td>Owner Name</td>
+<td>{{ employer.ower_name }}</td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td>{{ employer.email }}</td>
+</tr>
+
+<tr>
+<td>Mobile Number</td>
+<td>{{ employer.mobile_number }}</td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td>{{ employer.address }}</td>
+</tr>
+
+<tr>
+<td>Company Type</td>
+<td>{{ employer.company_type }}</td>
+</tr>
+
+<tr>
+<td>Registered On</td>
+<td>{{ employer.created_at }}</td>
+</tr>
+
+</table>
+
+<div class="buttons">
+
+<a href="{% url 'edit_profile' %}" class="btn edit">
+✏ Edit Profile
+</a>
+
+<a href="{% url 'employer_dashboard' %}" class="btn back">
+← Back to Dashboard
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

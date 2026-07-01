@@ -139,7 +139,7 @@ footer{
 
     <div class="nav-links">
         <a href="#">Dashboard</a>
-        <a href="{% url 'myprofile' %}">Profile</a>
+    
         <a href="#">Jobs</a>
         <a href="{% url 'jobseekerlogout' %}">Logout</a>
     </div>
@@ -163,13 +163,13 @@ footer{
     <div class="card">
         <h3>My Profile</h3>
         <p>View and update your personal profile details.</p>
-        <a href="#" class="btn">Open</a>
+        <a href="{% url 'myprofile' %}" class="btn">Open</a>
     </div>
 
     <div class="card">
         <h3>Resume</h3>
         <p>Upload and manage your resume.</p>
-        <a href="#" class="btn">Open</a>
+        <a href="{% url 'viewresume' %}" class="btn">Open</a>
     </div>
 
     <div class="card">

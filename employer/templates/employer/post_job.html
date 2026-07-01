@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post New Job | HireHub</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#eef4ff,#dbeafe,#f8fbff);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    max-width:750px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.header h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.header p{
+    opacity:.9;
+}
+
+.form{
+    padding:35px;
+}
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.form-group{
+    width:100%;
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#1e3a8a;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.form-group textarea{
+    resize:none;
+    height:130px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 10px rgba(37,99,235,.25);
+}
+
+.btns{
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.btn{
+
+    padding:13px 25px;
+    border:none;
+    border-radius:30px;
+    text-decoration:none;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.post{
+
+    background:#2563eb;
+}
+
+.post:hover{
+
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.cancel{
+
+    background:#6b7280;
+}
+
+.cancel:hover{
+
+    background:#4b5563;
+    transform:translateY(-2px);
+}
+
+.message{
+
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:600;
+}
+
+@media(max-width:768px){
+
+.row{
+    flex-direction:column;
+}
+
+.form{
+    padding:25px;
+}
+
+.btns{
+    flex-direction:column;
+}
+
+.btn{
+    width:100%;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h2>Post New Job</h2>
+
+<p>Create a new job vacancy for candidates</p>
+
+</div>
+
+<div class="form">
+
+<!-- {% if messages %}
+
+{% for message in messages %}
+
+<div class="message">
+{{ message }}
+</div>
+
+{% endfor %}
+
+{% endif %} -->
+
+<form method="post">
+
+{% csrf_token %}
+
+<div class="form-group">
+
+<label>Job Title</label>
+
+<input
+type="text"
+name="job_title"
+placeholder="Python Developer"
+required>
+
+</div>
+
+<div class="form-group">
+<label>Company Name</label>
+<input
+type="text"
+name="company_name"
+placeholder="Your Company Name"
+required>
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input
+type="text"
+name="location"
+placeholder="Lucknow"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Salary</label>
+
+<input
+type="text"
+name="salary"
+placeholder="5 LPA"
+required>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Experience</label>
+
+<select name="experience" required>
+
+<option value="">Select Experience</option>
+
+<option>Fresher</option>
+
+<option>1 Year</option>
+
+<option>2 Years</option>
+
+<option>3 Years</option>
+
+<option>5+ Years</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Job Type</label>
+
+<select name="job_type" required>
+
+<option value="">Select Type</option>
+
+<option>Full Time</option>
+
+<option>Part Time</option>
+
+<option>Internship</option>
+
+<option>Remote</option>
+
+<option>Hybrid</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Vacancies</label>
+
+<input
+type="number"
+name="vacancies"
+placeholder="5"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Required Skills</label>
+
+<input
+type="text"
+name="skills"
+placeholder="Python, Django, MySQL"
+required>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Job Description</label>
+
+<textarea
+name="description"
+placeholder="Write complete job description..."
+required></textarea>
+
+</div>
+
+<div class="btns">
+
+<button
+type="submit"
+class="btn post">
+
+🚀 Post Job
+
+</button>
+
+<a
+href="{% url 'employer_dashboard' %}"
+class="btn cancel">
+
+← Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

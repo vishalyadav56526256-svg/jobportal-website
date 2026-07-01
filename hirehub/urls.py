@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
     # path('adminapp/', include('adminapp.urls')),
-    # path('employer/', include('employer.urls')),
+    path('employer/', include('employer.urls')),
     path('jobseeker/', include('jobseeker.urls')),
     
     
