@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Applied Jobs | HireHub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#eef4fb;
+}
+
+/* Header */
+
+.header{
+background:linear-gradient(135deg,#2563eb,#1e3a8a);
+color:white;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.header h2{
+font-size:30px;
+}
+
+.header a{
+text-decoration:none;
+color:white;
+background:#ef4444;
+padding:10px 20px;
+border-radius:8px;
+transition:.3s;
+}
+
+.header a:hover{
+background:#dc2626;
+}
+
+/* Container */
+
+.container{
+width:92%;
+max-width:1300px;
+margin:40px auto;
+}
+
+/* Title */
+
+.title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.title h2{
+color:#1e3a8a;
+font-size:30px;
+}
+
+/* Cards */
+
+.card{
+
+background:white;
+border-radius:15px;
+padding:25px;
+margin-bottom:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+color:#2563eb;
+margin-bottom:10px;
+font-size:24px;
+
+}
+
+.company{
+
+font-size:18px;
+font-weight:600;
+margin-bottom:18px;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:20px;
+
+}
+
+.item{
+
+background:#f8fbff;
+padding:15px;
+border-radius:10px;
+
+}
+
+.item strong{
+
+display:block;
+color:#2563eb;
+margin-bottom:5px;
+
+}
+
+.status{
+
+display:inline-block;
+padding:8px 16px;
+border-radius:25px;
+background:#fef3c7;
+color:#92400e;
+font-weight:bold;
+
+}
+
+.resume{
+
+display:inline-block;
+margin-top:15px;
+text-decoration:none;
+background:#2563eb;
+color:white;
+padding:10px 18px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.resume:hover{
+
+background:#1d4ed8;
+
+}
+
+.empty{
+
+background:white;
+padding:50px;
+text-align:center;
+font-size:22px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.back{
+
+display:inline-block;
+margin-top:30px;
+text-decoration:none;
+background:#6b7280;
+color:white;
+padding:12px 25px;
+border-radius:8px;
+
+}
+
+.back:hover{
+
+background:#4b5563;
+
+}
+
+/* Responsive */
+
+@media(max-width:800px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.header{
+
+flex-direction:column;
+gap:15px;
+
+}
+
+.title{
+
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>HireHub</h2>
+
+<a href="{% url 'jobseekerlogout' %}">
+Logout
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="title">
+
+<h2>My Applied Jobs</h2>
+
+</div>
+
+{% for app in jobs %}
+
+<div class="card">
+
+<h3>{{ app.job.job_title }}</h3>
+
+<div class="company">
+
+🏢 {{ app.job.company_name }}
+
+</div>
+
+<div class="grid">
+
+<div class="item">
+
+<strong>Location</strong>
+
+{{ app.job.location }}
+
+</div>
+
+<div class="item">
+
+<strong>Salary</strong>
+
+{{ app.job.salary }}
+
+</div>
+
+<div class="item">
+
+<strong>Experience</strong>
+
+{{ app.job.experience }}
+
+</div>
+
+<div class="item">
+
+<strong>Job Type</strong>
+
+{{ app.job.job_type }}
+
+</div>
+
+<div class="item">
+
+<strong>Applied On</strong>
+
+{{ app.applied_on|date:"d M Y" }}
+
+</div>
+
+<div class="item">
+
+<strong>Status</strong>
+
+<span class="status">
+
+{{ app.status }}
+
+</span>
+
+</div>
+
+</div>
+
+{% if app.resume %}
+
+<a href="{{ app.resume.url }}" class="resume">
+
+📄 View Resume
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% empty %}
+
+<div class="empty">
+
+You haven't applied for any jobs yet.
+
+</div>
+
+{% endfor %}
+
+<a href="{% url 'viewjobs' %}" class="back">
+
+← Back to Jobs
+
+</a>
+
+</div>
+
+</body>
+</html>

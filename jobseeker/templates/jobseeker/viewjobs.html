@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Browse Jobs | HireHub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+/* Header */
+
+.header{
+
+background:linear-gradient(135deg,#2563eb,#1e3a8a);
+color:white;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.header h2{
+font-size:30px;
+}
+
+.header a{
+
+text-decoration:none;
+background:#ef4444;
+padding:10px 18px;
+border-radius:8px;
+color:white;
+transition:.3s;
+
+}
+
+.header a:hover{
+background:#dc2626;
+}
+
+/* Main */
+
+.container{
+
+width:92%;
+max-width:1300px;
+margin:40px auto;
+
+}
+
+.title{
+
+text-align:center;
+margin-bottom:35px;
+
+}
+
+.title h1{
+
+color:#1e3a8a;
+font-size:38px;
+margin-bottom:10px;
+
+}
+
+.title p{
+
+color:#666;
+font-size:17px;
+
+}
+
+/* Job Cards */
+
+.jobs{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+border-radius:15px;
+padding:25px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.company{
+
+font-size:24px;
+font-weight:bold;
+color:#2563eb;
+margin-bottom:8px;
+
+}
+
+.job{
+
+font-size:22px;
+font-weight:600;
+margin-bottom:20px;
+color:#222;
+
+}
+
+.info{
+
+margin-bottom:10px;
+font-size:15px;
+color:#555;
+
+}
+
+.info span{
+
+font-weight:bold;
+color:#1e3a8a;
+
+}
+
+.description{
+
+margin-top:15px;
+color:#666;
+line-height:1.6;
+height:80px;
+overflow:hidden;
+
+}
+
+.buttons{
+
+margin-top:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.date{
+
+font-size:14px;
+color:#777;
+
+}
+
+.btn{
+
+text-decoration:none;
+background:#2563eb;
+color:white;
+padding:10px 18px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#1d4ed8;
+
+}
+
+.empty{
+
+background:white;
+padding:40px;
+text-align:center;
+border-radius:15px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.empty h2{
+
+color:#777;
+
+}
+
+.back{
+
+margin-top:40px;
+text-align:center;
+
+}
+
+.back a{
+
+display:inline-block;
+padding:12px 25px;
+background:#6b7280;
+color:white;
+text-decoration:none;
+border-radius:8px;
+
+}
+
+.back a:hover{
+
+background:#4b5563;
+
+}
+
+@media(max-width:768px){
+
+.header{
+
+flex-direction:column;
+gap:15px;
+padding:20px;
+
+}
+
+.title h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>HireHub JobSeeker</h2>
+
+
+
+</div>
+
+<div class="container">
+
+<div class="title">
+
+<h1>Browse Latest Jobs</h1>
+
+<p>Find your dream job from top companies.</p>
+
+</div>
+
+{% if jobs %}
+
+<div class="jobs">
+
+{% for job in jobs %}
+
+<div class="card">
+
+<div class="company">
+
+🏢 {{ job.company_name }}
+
+</div>
+
+<div class="job">
+
+{{ job.job_title }}
+
+</div>
+
+<div class="info">
+
+<span>📍 Location :</span>
+
+{{ job.location }}
+
+</div>
+
+<div class="info">
+
+<span>💰 Salary :</span>
+
+{{ job.salary }}
+
+</div>
+
+<div class="info">
+
+<span>💼 Experience :</span>
+
+{{ job.experience }}
+
+</div>
+
+<div class="info">
+
+<span>🧑‍🤝‍🧑 Vacancies :</span>
+
+{{ job.vacancies }}
+
+</div>
+
+<div class="info">
+
+<span>🕒 Job Type :</span>
+
+{{ job.job_type }}
+
+</div>
+
+<div class="info">
+
+<span>⭐ Skills :</span>
+
+{{ job.skills }}
+
+</div>
+
+<div class="description">
+
+{{ job.description|truncatewords:25 }}
+
+</div>
+
+<div class="buttons">
+
+<div class="date">
+
+Posted :
+{{ job.posted_on|date:"d M Y" }}
+
+</div>
+
+{% if job.applied %}
+
+<button class="applied-btn" disabled>
+    ✅ Already Applied
+</button>
+
+{% else %}
+
+<a href="{% url 'applyjob' job.id %}" class="apply-btn">
+    Apply Now
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty">
+
+<h2>No Jobs Available</h2>
+
+<p>Please check again later.</p>
+
+</div>
+
+{% endif %}
+
+<div class="back">
+
+<a href="{% url 'jobseekerdash' %}" class="btn">
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

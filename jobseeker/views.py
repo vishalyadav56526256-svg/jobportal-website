@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render,redirect
 from jobseeker.models import Education, Jobseekerreg, Resume, Skill
 from mainapp.models import Logininfo
+from employer.models import Employerreg, Job, applied_jobs  
 
 
 # COMPLETE LOGIN AND REGISTRATION FUNCTIONALITY FOR JOBSEEKER
@@ -395,4 +396,112 @@ def editprofile(request):
         request,
         "jobseeker/editprofile.html",
         context
-    )      
+    )   
+    
+    
+def viewjobs(request):
+
+    if "jsid" not in request.session:
+        return redirect("jobseekerlogin")
+
+    js = Jobseekerreg.objects.get(
+        email=request.session["jsid"]
+    )
+
+    jobs = Job.objects.all()
+
+    # Check every job whether already applied
+    for job in jobs:
+        job.applied = applied_jobs.objects.filter(
+            job=job,
+            jobseeker=js
+        ).exists()
+
+    context = {
+        "jobs": jobs
+    }
+
+    return render(
+        request,
+        "jobseeker/viewjobs.html",
+        context
+    ) 
+    
+    
+def applyjob(request, job_id):
+
+    if "jsid" not in request.session:
+        return redirect("jobseekerlogin")
+
+    js = Jobseekerreg.objects.get(
+        email=request.session["jsid"]
+    )
+
+    job = Job.objects.get(id=job_id)
+
+    if request.method == "POST":
+
+        resume = request.FILES.get("resume")
+        cover_letter = request.POST.get("cover_letter")
+
+        if applied_jobs.objects.filter(
+            job=job,
+            jobseeker=js
+        ).exists():
+
+            messages.error(
+                request,
+                "You already applied."
+            )
+
+            return redirect("viewjobs")
+
+        applied_jobs.objects.create(
+
+            job=job,
+            jobseeker=js,
+            resume=resume,
+            cover_letter=cover_letter
+
+        )
+
+        messages.success(
+            request,
+            "Application Submitted Successfully"
+        )
+
+        return redirect("viewjobs")
+
+    context = {
+        "job": job
+    }
+
+    return render(
+        request,
+        "jobseeker/applyjob.html",
+        context
+    )
+    
+def viewappliedjobs(request):
+
+    if "jsid" not in request.session:
+        return redirect("jobseekerlogin")
+
+    js = Jobseekerreg.objects.get(
+        email=request.session["jsid"]
+    )
+
+    applied_jobs_list = applied_jobs.objects.filter(
+        jobseeker=js
+    )
+    print(applied_jobs_list)
+
+    context = {
+        "jobs": applied_jobs_list
+    }
+
+    return render(
+        request,
+        "jobseeker/viewappliedjobs.html",
+        context
+    )    

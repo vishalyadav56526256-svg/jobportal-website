@@ -44,4 +44,25 @@ class Job(models.Model):
     posted_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.job_title    
+        return self.job_title   
+    
+    
+class applied_jobs(models.Model):
+    job = models.ForeignKey(
+        Job,
+        on_delete=models.CASCADE
+    )
+    jobseeker = models.ForeignKey(
+        'jobseeker.Jobseekerreg',
+        on_delete=models.CASCADE
+    )
+    resume=models.FileField(upload_to='resumes/',
+        null=True,
+        blank=True
+    )
+    cover_letter = models.TextField(blank=True)
+    applied_on = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default='Pending')
+
+    def __str__(self):
+        return self.jobseeker.name     

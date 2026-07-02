@@ -26,4 +26,7 @@ urlpatterns = [
     path("resume/view/",views.viewresume,name="viewresume"),
     path("resume/edit/<int:id>/",views.editresume,name="editresume"),
     path("resume/delete/<int:id>/",views.deleteresume,name="deleteresume"),
+    path("job/view/",views.viewjobs,name="viewjobs"),
+    path("job/apply/<int:job_id>/",views.applyjob,name="applyjob"),
+    path("job/applied/",views.viewappliedjobs,name="viewappliedjobs"),
 ]

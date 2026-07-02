@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apply Job | HireHub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f3f7fd;
+}
+
+/* Header */
+
+.header{
+
+background:linear-gradient(135deg,#2563eb,#1e3a8a);
+color:white;
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.header h2{
+font-size:30px;
+}
+
+.header a{
+
+text-decoration:none;
+color:white;
+background:#ef4444;
+padding:10px 18px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.header a:hover{
+
+background:#dc2626;
+
+}
+
+/* Container */
+
+.container{
+
+width:92%;
+max-width:1100px;
+margin:40px auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+
+}
+
+/* Job Card */
+
+.job-card{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.job-card h2{
+
+color:#2563eb;
+margin-bottom:10px;
+
+}
+
+.company{
+
+font-size:18px;
+font-weight:600;
+color:#444;
+margin-bottom:25px;
+
+}
+
+.info{
+
+margin-bottom:18px;
+
+}
+
+.info strong{
+
+display:block;
+color:#2563eb;
+margin-bottom:4px;
+
+}
+
+.description{
+
+margin-top:25px;
+line-height:28px;
+color:#555;
+
+}
+
+/* Form */
+
+.form-box{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.form-box h2{
+
+text-align:center;
+margin-bottom:25px;
+color:#2563eb;
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+.form-group label{
+
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#1e3a8a;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+outline:none;
+border-color:#2563eb;
+box-shadow:0 0 8px rgba(37,99,235,.25);
+
+}
+
+.form-group textarea{
+
+resize:none;
+height:180px;
+
+}
+
+button{
+
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+.back{
+
+display:block;
+margin-top:15px;
+text-align:center;
+text-decoration:none;
+background:#6b7280;
+color:white;
+padding:12px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.back:hover{
+
+background:#4b5563;
+
+}
+
+.message{
+
+background:#dcfce7;
+color:#166534;
+padding:12px;
+margin-bottom:20px;
+border-radius:8px;
+text-align:center;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.container{
+
+grid-template-columns:1fr;
+
+}
+
+.header{
+
+flex-direction:column;
+gap:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>HireHub</h2>
+
+<a href="#">
+Logout
+</a>
+
+</div>
+
+<div class="container">
+
+<!-- Left -->
+
+<div class="job-card">
+
+<h2>{{ job.job_title }}</h2>
+
+<div class="company">
+🏢 {{ job.company_name }}
+</div>
+
+<div class="info">
+<strong>Location</strong>
+{{ job.location }}
+</div>
+
+<div class="info">
+<strong>Salary</strong>
+{{ job.salary }}
+</div>
+
+<div class="info">
+<strong>Experience</strong>
+{{ job.experience }}
+</div>
+
+<div class="info">
+<strong>Job Type</strong>
+{{ job.job_type }}
+</div>
+
+<div class="info">
+<strong>Vacancies</strong>
+{{ job.vacancies }}
+</div>
+
+<div class="info">
+<strong>Skills Required</strong>
+{{ job.skills }}
+</div>
+
+<div class="description">
+
+<strong>Job Description</strong>
+
+<p>
+{{ job.description }}
+</p>
+
+</div>
+
+</div>
+
+<!-- Right -->
+
+<div class="form-box">
+
+<h2>Apply For This Job</h2>
+
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="form-group">
+
+<label>Upload Resume</label>
+
+<input
+type="file"
+name="resume"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Cover Letter</label>
+
+<textarea
+name="cover_letter"
+placeholder="Tell the employer why you are suitable for this job..."
+required></textarea>
+
+</div>
+
+<button type="submit">
+
+Apply Now
+
+</button>
+
+<a href="{% url 'viewjobs' %}" class="back">
+
+← Back to Jobs
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
