@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Employerreg , Job
+from .models import Employerreg , Job,applied_jobs
 
 
 
@@ -207,3 +207,48 @@ def delete_job(request, job_id):
     job.delete()
     messages.success(request, "Job deleted successfully.")
     return redirect("my_jobs")
+
+
+def view_applicants(request, job_id):
+    if "employer_id" not in request.session:
+        return redirect("employer_login")
+
+    employer = Employerreg.objects.get(id=request.session["employer_id"])
+    job = Job.objects.get(id=job_id, employer=employer)
+    applicants = applied_jobs.objects.filter(job=job)
+
+    return render(request, "employer/view_applicants.html", {"employer": employer, "job": job, "applicants": applicants})
+
+    
+
+def accept_application(request, app_id):
+
+    if "employer_id" not in request.session:
+        return redirect("employer_login")
+
+    application = applied_jobs.objects.get(id=app_id)
+
+    application.status = "Accepted"
+
+    application.save()
+
+    messages.success(request, "Application Accepted Successfully.")
+
+    return redirect("view_applicants", job_id=application.job.id)
+
+
+
+def reject_application(request, app_id):
+
+    if "employer_id" not in request.session:
+        return redirect("employer_login")
+
+    application = applied_jobs.objects.get(id=app_id)
+
+    application.status = "Rejected"
+
+    application.save()
+
+    messages.success(request, "Application Rejected Successfully.")
+
+    return redirect("view_applicants", job_id=application.job.id)

@@ -1,102 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>My Jobs | HireHub</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-*{
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+    *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:#eef2f9;
+    background:linear-gradient(135deg,#eef4ff,#f8fbff);
+    min-height:100vh;
 }
 
-/* Header */
+/* HEADER */
 
-.header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:linear-gradient(135deg,#1e40af,#1e3a8a);
-    color:#fff;
-    padding:18px 45px;
+header{
+    background:linear-gradient(135deg,#1e40af,#2563eb);
+    padding:18px 50px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 5px 18px rgba(0,0,0,.15);
+    color:white;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.header h2{
-    font-size:30px;
-    letter-spacing:1px;
+.logo{
+    font-size:28px;
+    font-weight:700;
+    display:flex;
+    gap:10px;
+    align-items:center;
 }
 
-.header a{
+.header-right{
+    display:flex;
+    gap:15px;
+}
+
+.header-right a{
     text-decoration:none;
     color:white;
-    background:#ef4444;
-    padding:10px 20px;
-    border-radius:8px;
-    font-weight:600;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:500;
     transition:.3s;
 }
 
-.header a:hover{
+.dashboard-btn{
+    background:rgba(255,255,255,.15);
+}
+
+.dashboard-btn:hover{
+    background:rgba(255,255,255,.25);
+}
+
+.logout-btn{
+    background:#ef4444;
+}
+
+.logout-btn:hover{
     background:#dc2626;
 }
 
-/* Container */
+/* CONTAINER */
 
 .container{
-    width:94%;
+    width:95%;
     max-width:1400px;
-    margin:45px auto;
+    margin:40px auto;
 }
 
-/* Top */
+/* TOP */
 
-.top{
+.top-section{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:30px;
     flex-wrap:wrap;
-    gap:15px;
+    gap:20px;
 }
 
-.top h3{
-    font-size:32px;
+.top-section h1{
+    font-size:38px;
     color:#1e3a8a;
+    margin-bottom:8px;
 }
 
-.add-btn{
+.top-section p{
+    color:#64748b;
+    font-size:16px;
+}
+
+.post-job{
     text-decoration:none;
     background:#2563eb;
     color:white;
-    padding:13px 24px;
-    border-radius:10px;
+    padding:14px 24px;
+    border-radius:12px;
     font-weight:600;
     transition:.3s;
     box-shadow:0 8px 20px rgba(37,99,235,.25);
 }
 
-.add-btn:hover{
-    background:#1d4ed8;
+.post-job:hover{
     transform:translateY(-3px);
+    background:#1d4ed8;
 }
 
-/* Table */
+/* CARDS */
 
-.table-box{
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.card{
     background:white;
-    border-radius:16px;
+    border-radius:18px;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h2{
+    font-size:34px;
+    color:#1e40af;
+}
+
+.card p{
+    color:#64748b;
+    margin-top:6px;
+}
+
+.card-icon{
+    font-size:45px;
+    color:#2563eb;
+}
+
+/* SEARCH */
+
+.search-box{
+    background:white;
+    padding:15px 20px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.search-box i{
+    color:#2563eb;
+    font-size:18px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:16px;
+}
+
+/* TABLE */
+
+.table-container{
+    background:white;
+    border-radius:18px;
     overflow:hidden;
     box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
@@ -106,65 +207,77 @@ table{
     border-collapse:collapse;
 }
 
-th{
-    background:#1e40af;
+thead{
+    background:linear-gradient(135deg,#1e40af,#2563eb);
+}
+
+thead th{
     color:white;
     padding:18px;
-    text-transform:uppercase;
     font-size:14px;
     letter-spacing:.5px;
 }
 
-td{
+tbody td{
     padding:18px;
+    border-bottom:1px solid #edf2f7;
     text-align:center;
-    border-bottom:1px solid #ececec;
-    font-size:15px;
 }
 
-tr:nth-child(even){
-    background:#fafcff;
+tbody tr{
+    transition:.3s;
 }
 
-tr:hover{
-    background:#eef5ff;
+tbody tr:hover{
+    background:#f8fbff;
 }
 
-/* Badges */
+.job-title{
+    font-weight:600;
+    color:#1e3a8a;
+}
 
 .salary{
     background:#dcfce7;
     color:#166534;
-    padding:7px 15px;
+    padding:7px 14px;
     border-radius:20px;
     font-weight:600;
 }
 
-.jobtype{
-    background:#dbeafe;
-    color:#1d4ed8;
-    padding:7px 15px;
-    border-radius:20px;
-    font-weight:600;
-}
-
-.exp{
+.experience{
     background:#fef3c7;
     color:#92400e;
-    padding:7px 15px;
+    padding:7px 14px;
     border-radius:20px;
     font-weight:600;
 }
 
-/* Buttons */
-
-.btn{
-    text-decoration:none;
-    color:white;
-    padding:9px 16px;
-    border-radius:8px;
-    font-size:14px;
+.job-type{
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:7px 14px;
+    border-radius:20px;
     font-weight:600;
+}
+
+/* ACTION BUTTONS */
+
+.action-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.action-buttons a{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
     transition:.3s;
 }
 
@@ -177,6 +290,15 @@ tr:hover{
     transform:translateY(-2px);
 }
 
+.applicants{
+    background:#10b981;
+}
+
+.applicants:hover{
+    background:#059669;
+    transform:translateY(-2px);
+}
+
 .delete{
     background:#ef4444;
 }
@@ -186,110 +308,224 @@ tr:hover{
     transform:translateY(-2px);
 }
 
-/* Empty */
+/* EMPTY */
 
 .empty{
-    padding:40px;
-    font-size:18px;
-    color:#666;
-    font-weight:600;
-}
-
-/* Bottom */
-
-.bottom{
-    margin-top:35px;
+    padding:60px 20px;
     text-align:center;
 }
 
-.dashboard{
+.empty i{
+    font-size:60px;
+    color:#94a3b8;
+    margin-bottom:15px;
+}
+
+.empty h2{
+    color:#334155;
+    margin-bottom:10px;
+}
+
+.empty p{
+    color:#64748b;
+    margin-bottom:20px;
+}
+
+.empty a{
+    display:inline-block;
     text-decoration:none;
-    background:#6b7280;
+    background:#2563eb;
     color:white;
-    padding:12px 24px;
-    border-radius:8px;
-    font-weight:600;
-    transition:.3s;
+    padding:12px 20px;
+    border-radius:10px;
 }
 
-.dashboard:hover{
-    background:#4b5563;
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+.table-container{
+    overflow-x:auto;
 }
-
-/* Responsive */
-
-@media(max-width:1000px){
 
 table{
-    font-size:14px;
-}
-
-th,td{
-    padding:12px;
+    min-width:1100px;
 }
 
 }
 
 @media(max-width:768px){
 
-.header{
+header{
     flex-direction:column;
     gap:15px;
     padding:20px;
 }
 
-.top{
+.top-section{
     flex-direction:column;
     align-items:flex-start;
 }
 
-.top h3{
-    font-size:26px;
+.top-section h1{
+    font-size:30px;
 }
 
-.add-btn{
+.header-right{
+    width:100%;
+    justify-content:center;
+}
+
+.post-job{
     width:100%;
     text-align:center;
 }
 
-table{
-    display:block;
-    overflow-x:auto;
-    white-space:nowrap;
+.cards{
+    grid-template-columns:1fr;
 }
 
 }
+
+/* ---------- CSS PART 2 ---------- */
 
 </style>
 
 </head>
+
 <body>
 
-<div class="header">
+<!-- HEADER -->
 
-<h2>🏢 HireHub Employer</h2>
+<header>
 
-<a href="{% url 'employer_logout' %}">
+<div class="logo">
+
+<i class="fa-solid fa-briefcase"></i>
+
+HireHub Employer
+
+</div>
+
+<div class="header-right">
+
+<a href="{% url 'employer_dashboard' %}" class="dashboard-btn">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+<a href="{% url 'employer_logout' %}" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
 Logout
+
 </a>
 
 </div>
+
+</header>
+
+<!-- MAIN -->
 
 <div class="container">
 
-<div class="top">
+<!-- TOP -->
 
-<h3>My Posted Jobs</h3>
+<div class="top-section">
 
-<a href="{% url 'post_job' %}" class="add-btn">
-+ Post New Job
+<div>
+
+<h1>My Posted Jobs</h1>
+
+<p>
+Manage, Edit and Track every job you've posted.
+</p>
+
+</div>
+
+<a href="{% url 'post_job' %}" class="post-job">
+
+<i class="fa-solid fa-plus"></i>
+
+Post New Job
+
 </a>
 
 </div>
 
-<div class="table-box">
+<!-- CARDS -->
 
-<table>
+<div class="cards">
+
+<div class="card">
+
+<div>
+
+<h2>{{ jobs|length }}</h2>
+
+<p>Total Jobs</p>
+
+</div>
+
+<i class="fa-solid fa-briefcase card-icon"></i>
+
+</div>
+
+<div class="card">
+
+<div>
+
+<h2>Active</h2>
+
+<p>Recruitment</p>
+
+</div>
+
+<i class="fa-solid fa-user-check card-icon"></i>
+
+</div>
+
+<div class="card">
+
+<div>
+
+<h2>HireHub</h2>
+
+<p>Employer Panel</p>
+
+</div>
+
+<i class="fa-solid fa-building card-icon"></i>
+
+</div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchJob"
+placeholder="Search Job Title..."
+onkeyup="searchJobs()">
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-container">
+
+<table id="jobTable">
+
+<thead>
 
 <tr>
 
@@ -307,59 +543,117 @@ Logout
 
 <th>Job Type</th>
 
-<th>Posted On</th>
+<th>Posted</th>
 
-<th>Action</th>
+<th>Applicants Applied</th>
 
 </tr>
+
+</thead>
+
+<tbody>
 
 {% for job in jobs %}
 
 <tr>
 
-<td>{{ job.id }}</td>
+<td>
+
+{{ job.id }}
+
+</td>
 
 <td>
-<b style="color:#1e3a8a;">
+
+<div class="job-title">
+
 {{ job.job_title }}
-</b>
+
+</div>
+
 </td>
 
-<td>{{ job.location }}</td>
+<td>
+
+<i class="fa-solid fa-location-dot"></i>
+
+{{ job.location }}
+
+</td>
 
 <td>
+
 <span class="salary">
+
 ₹ {{ job.salary }}
+
 </span>
+
 </td>
 
 <td>
-<span class="exp">
+
+<span class="experience">
+
 {{ job.experience }}
+
 </span>
+
 </td>
 
-<td>{{ job.vacancies }}</td>
+<td>
+
+{{ job.vacancies }}
+
+</td>
 
 <td>
-<span class="jobtype">
+
+<span class="job-type">
+
 {{ job.job_type }}
-</span>
-</td>
 
-<td>{{ job.posted_on|date:"d M Y" }}</td>
+</span>
+
+</td>
 
 <td>
 
-<a href="{% url 'edit_job' job.id %}" class="btn edit">
-Edit
+{{ job.posted_on|date:"d M Y" }}
+
+</td>
+
+<td>
+
+<div class="action-buttons">
+
+<a
+href="{% url 'edit_job' job.id %}"
+class="edit">
+
+<i class="fa-solid fa-pen"></i>
+
 </a>
 
-<a href="{% url 'delete_job' job.id %}"
-class="btn delete"
+
+
+<a
+href="{% url 'delete_job' job.id %}"
+class="delete"
 onclick="return confirm('Delete this Job?')">
-Delete
+
+<i class="fa-solid fa-trash"></i>
+
 </a>
+<a
+href="{% url 'view_applicants' job.id %}"
+class="applicants">
+
+<i class="fa-solid fa-users"></i>
+
+</a>
+
+</div>
 
 </td>
 
@@ -369,9 +663,27 @@ Delete
 
 <tr>
 
-<td colspan="9" class="empty">
+<td colspan="9">
 
-🚀 No Jobs Posted Yet.
+<div class="empty">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<h2>No Jobs Posted Yet</h2>
+
+<p>
+
+Start posting jobs to hire talented candidates.
+
+</p>
+
+<a href="{% url 'post_job' %}">
+
+Post First Job
+
+</a>
+
+</div>
 
 </td>
 
@@ -379,21 +691,44 @@ Delete
 
 {% endfor %}
 
+</tbody>
+
 </table>
 
 </div>
 
-<div class="bottom">
-
-<a href="{% url 'employer_dashboard' %}" class="dashboard">
-
-← Back to Dashboard
-
-</a>
-
 </div>
 
-</div>
+<!-- SEARCH JS -->
+
+<script>
+
+function searchJobs(){
+
+let input=document.getElementById("searchJob").value.toUpperCase();
+
+let table=document.getElementById("jobTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[1];
+
+if(td){
+
+let txt=td.textContent||td.innerText;
+
+tr[i].style.display=txt.toUpperCase().indexOf(input)>-1?"":"none";
+
+}
+
+}
+
+}
+
+</script>
 
 </body>
+
 </html>

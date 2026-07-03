@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Applicants | HireHub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fc;
+}
+
+/* Header */
+
+.header{
+
+background:linear-gradient(135deg,#2563eb,#1e3a8a);
+padding:20px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.header h2{
+font-size:30px;
+}
+
+.logout{
+
+text-decoration:none;
+background:#ef4444;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.logout:hover{
+
+background:#dc2626;
+
+}
+
+/* Container */
+
+.container{
+
+width:95%;
+max-width:1400px;
+margin:40px auto;
+
+}
+
+/* Title */
+
+.title{
+
+background:white;
+padding:25px;
+border-radius:12px;
+margin-bottom:30px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.title h2{
+
+color:#2563eb;
+margin-bottom:10px;
+
+}
+
+.title p{
+
+font-size:17px;
+color:#555;
+
+}
+
+/* Table */
+
+.table-box{
+
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#2563eb;
+color:white;
+padding:18px;
+
+}
+
+td{
+
+padding:16px;
+text-align:center;
+border-bottom:1px solid #eee;
+
+}
+
+tr:hover{
+
+background:#f8fbff;
+
+}
+
+/* Resume Button */
+
+.resume{
+
+display:inline-block;
+padding:8px 16px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:6px;
+transition:.3s;
+
+}
+
+.resume:hover{
+
+background:#1d4ed8;
+
+}
+
+/* Status */
+
+.pending{
+
+background:#fef3c7;
+color:#92400e;
+padding:7px 15px;
+border-radius:20px;
+font-weight:bold;
+
+}
+
+.accepted{
+
+background:#dcfce7;
+color:#166534;
+padding:7px 15px;
+border-radius:20px;
+font-weight:bold;
+
+}
+
+.rejected{
+
+background:#fee2e2;
+color:#991b1b;
+padding:7px 15px;
+border-radius:20px;
+font-weight:bold;
+
+}
+
+/* Buttons */
+
+.accept{
+
+background:#16a34a;
+color:white;
+padding:8px 15px;
+border-radius:6px;
+text-decoration:none;
+margin-right:8px;
+transition:.3s;
+
+}
+
+.accept:hover{
+
+background:#15803d;
+
+}
+
+.reject{
+
+background:#dc2626;
+color:white;
+padding:8px 15px;
+border-radius:6px;
+text-decoration:none;
+transition:.3s;
+
+}
+
+.reject:hover{
+
+background:#b91c1c;
+
+}
+
+/* Empty */
+
+.empty{
+
+padding:40px;
+text-align:center;
+font-size:22px;
+color:#666;
+
+}
+
+/* Back */
+
+.bottom{
+
+text-align:center;
+margin-top:30px;
+
+}
+
+.back{
+
+display:inline-block;
+padding:12px 25px;
+background:#6b7280;
+color:white;
+text-decoration:none;
+border-radius:8px;
+
+}
+
+.back:hover{
+
+background:#4b5563;
+
+}
+
+@media(max-width:1000px){
+
+table{
+
+font-size:14px;
+
+}
+
+th,td{
+
+padding:10px;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.header{
+
+flex-direction:column;
+gap:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>HireHub Employer</h2>
+
+<a href="#" class="logout">
+Logout
+</a>
+
+</div>
+
+<div class="container">
+
+<div class="title">
+
+<h2>{{ job.job_title }}</h2>
+
+<p>
+
+<strong>Company :</strong>
+
+{{ job.company_name }}
+
+</p>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Mobile</th>
+
+<th>Resume</th>
+
+<th>Cover Letter</th>
+
+<th>Applied On</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for app in applicants %}
+
+<tr>
+
+<td>{{ app.id }}</td>
+
+<td>{{ app.jobseeker.name }}</td>
+
+<td>{{ app.jobseeker.email }}</td>
+
+<td>{{ app.jobseeker.mobile_number }}</td>
+
+<td>
+
+{% if app.resume %}
+
+<a href="{{ app.resume.url }}" class="resume" target="_blank">
+
+View Resume
+
+</a>
+
+{% else %}
+
+No Resume
+
+{% endif %}
+
+</td>
+
+<td>
+
+{{ app.cover_letter|truncatewords:10 }}
+
+</td>
+
+<td>
+
+{{ app.applied_on|date:"d M Y" }}
+
+</td>
+
+<td>
+
+{% if app.status == "Pending" %}
+
+<span class="pending">
+
+Pending
+
+</span>
+
+{% elif app.status == "Accepted" %}
+
+<span class="accepted">
+
+Accepted
+
+</span>
+
+{% else %}
+
+<span class="rejected">
+
+Rejected
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if app.status == "Pending" %}
+
+<a href="{% url 'accept_application' app.id %}" class="accept">
+
+Accept
+
+</a>
+
+<a href="{% url 'reject_application' app.id %}" class="reject">
+
+Reject
+
+</a>
+
+{% elif app.status == "Accepted" %}
+
+<span class="accepted">
+
+Accepted
+
+</span>
+
+{% else %}
+
+<span class="rejected">
+
+Rejected
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="9" class="empty">
+
+No Applicants Yet
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="bottom">
+
+<a href="{% url 'my_jobs' %}" class="back">
+
+← Back to My Jobs
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
